@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app demo 1`] = `
+<div>
+   
+  <div
+    class="bg-black"
+    data-testid="todolist-container"
+  >
+    <header
+      class="text-red-400"
+    >
+      Todolist
+    </header>
+    <input
+      value=""
+    />
+     
+    <button>
+      add
+    </button>
+    <select
+      data-testid="dropdown-container"
+      id="dropdown-container"
+      name="filterTodo"
+    >
+      <option
+        value="showAll"
+      >
+        Show all
+      </option>
+      <option
+        value="completed"
+      >
+        Completed
+      </option>
+      <option
+        value="incomplete"
+      >
+        Incomplete
+      </option>
+    </select>
+    <ul
+      class=""
+    />
+  </div>
+</div>
+`;
