@@ -21,7 +21,7 @@ const Todolist = () => {
         <div className="todo-textarea-container m-2">
           <textarea className="form-control" value={description} onChange={onChangeDescription} placeholder="Leave a comment here" id="floatingTextarea"></textarea>
         </div>
-        <button className="btn btn-primary m-4" onClick={handleAddTodo}>add</button>
+        <button className="btn btn-primary m-5" onClick={handleAddTodo}>add</button>
       </header>
       <div className="todolist-dropdown-container m-2" >
         <Dropdown dropdown={filterDropdown} setDropdown={setSelectFilter} />
