@@ -1,48 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`app demo 1`] = `
+exports[`app container 1`] = `
 <div>
    
   <div
-    class="bg-black"
+    class="todolist-container"
     data-testid="todolist-container"
   >
     <header
-      class="text-red-400"
+      class="todolist-header"
     >
-      Todolist
+      <h1
+        class="text-amber-400"
+      >
+        Todolist
+      </h1>
+      <input
+        class="form-control"
+        value=""
+      />
+      <div
+        class="todo-textarea-container m-2"
+      >
+        <textarea
+          class="form-control"
+          id="floatingTextarea"
+          placeholder="Leave a comment here"
+        />
+      </div>
+      <button
+        class="btn btn-primary m-5"
+      >
+        add
+      </button>
     </header>
-    <input
-      value=""
-    />
-     
-    <button>
-      add
-    </button>
-    <select
-      data-testid="dropdown-container"
-      id="dropdown-container"
-      name="filterTodo"
+    <div
+      class="todolist-dropdown-container m-2"
     >
-      <option
-        value="showAll"
+      <select
+        class="btn-group"
+        data-testid="dropdown-container"
+        id="dropdown-container"
+        name="dropdownContainer"
       >
-        Show all
-      </option>
-      <option
-        value="completed"
+        <option
+          value="showAll"
+        >
+          Show all
+        </option>
+        <option
+          value="completed"
+        >
+          Completed
+        </option>
+        <option
+          value="incomplete"
+        >
+          Incomplete
+        </option>
+      </select>
+    </div>
+    <table
+      class="table table-bordered"
+    >
+      <thead
+        class="table-light"
       >
-        Completed
-      </option>
-      <option
-        value="incomplete"
-      >
-        Incomplete
-      </option>
-    </select>
-    <ul
-      class=""
-    />
+        <tr>
+          <th
+            class="align-middle text-center"
+            scope="col"
+          >
+            No.
+          </th>
+          <th
+            scope="col"
+          >
+            Todo Name
+          </th>
+          <th
+            scope="col"
+          >
+            Description
+          </th>
+          <th
+            class="text-center"
+            scope="col"
+          >
+            Complete
+          </th>
+          <th
+            class="text-center"
+            scope="col"
+          >
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
   </div>
 </div>
 `;
