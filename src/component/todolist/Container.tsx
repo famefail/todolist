@@ -41,7 +41,7 @@ const Todolist = () => {
             const key = `${todolist.todo}-${index}`
             return (<tr key={key}>
               <th scope="row" className="align-middle text-center">{index + 1}</th>
-              <td className="align-middle">{todolist.todo}</td>
+              <td className="align-middle text-wrap text-break">{todolist.todo}</td>
               <td className="align-middle text-wrap text-break">{todolist.description}</td>
               <td className="align-middle text-center">
                 <input type="checkbox" className="checkbox-complete align-middle" onChange={(v) => onChangeTodo(v.target.checked, todolist.id)} checked={todolist.complete} />
