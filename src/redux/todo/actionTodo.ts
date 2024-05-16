@@ -1,11 +1,12 @@
 import { typeTodo } from "./typeTodo"
 
-export const addTodo = (value: string, description: string, id: string) => {
+export const addTodo = (value: string, description: string, id: string, date: string) => {
 	return {
 		type: typeTodo.ADD_TODO,
 		payload: {
 			id: id,
 			newTodo: value,
+			date: date,
 			description: description,
 		}
 	}

@@ -9,8 +9,10 @@ export const UseTodolistController = () => {
   const [inputTodo, setInputTodo] = useState('')
   const [description, setDescription] = useState('')
   const [selectFilter, setSelectFilter] = useState('showAll')
+  const [inputDate, setInputDate] = useState('')
   const todos = useSelector((state: RootState) => state.todos)
   const [filterTodos, setFilterTodos] = useState<IReducer[]>(todos)
+  const [undo, setUndo] = useState<IReducer | undefined>()
   const id = `${inputTodo}-${todos.length}`
 
   const filterDropdown = [{
@@ -24,6 +26,10 @@ export const UseTodolistController = () => {
   {
     value: 'incomplete',
     label: 'Incomplete',
+  },
+  {
+    value: 'overDue',
+    label: 'Over due'
   }]
 
   const onFilterTodolist = useCallback((filter: string) => {
@@ -31,7 +37,11 @@ export const UseTodolistController = () => {
       setFilterTodos(todos.filter((todo) => todo.complete === true))
     } else if (filter === 'incomplete') {
       setFilterTodos(todos.filter((todo) => todo.complete === false))
-    } else {
+    } else if (filter === 'overDue') {
+      const present = Date.now() 
+      setFilterTodos(todos.filter ((todo) => new Date(todo.date).getTime() > present))
+    }
+     else {
       setFilterTodos(todos)
     }
   }, [todos, setFilterTodos])
@@ -43,14 +53,26 @@ export const UseTodolistController = () => {
 
   const handleAddTodo = () => {
     if (inputTodo)
-      dispatch(addTodo(inputTodo, description, id))
+      dispatch(addTodo(inputTodo, description, id, inputDate))
     setInputTodo('')
     setDescription('')
+    setInputDate('')
+  }
+
+  const handleUndoTodo = () => {
+    if(undo)
+    dispatch(addTodo(undo.todo, undo?.description || '', undo.id, undo.date))
+  setUndo(undefined)
   }
 
   const onChangeInputTodo = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const value = evt.target.value
     setInputTodo(value)
+  }
+
+  const onChangeInputDate = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const value = evt.target.value
+    setInputDate(value)
   }
 
   const onChangeDescription = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -60,6 +82,8 @@ export const UseTodolistController = () => {
 
   const onClickDelTodo = (id: string) => {
     dispatch(deleteTodo(id))
+    const getUndo = todos.find((todo) => todo.id === id)
+    setUndo(getUndo)
   }
 
   const onChangeTodo = (evt: boolean, id: string) => {
@@ -79,6 +103,9 @@ export const UseTodolistController = () => {
     filterTodos,
     onFilterTodolist,
     onChangeDescription,
+    onChangeInputDate,
+    handleUndoTodo,
+    inputDate,
     description
   }
 }

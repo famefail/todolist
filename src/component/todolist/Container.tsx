@@ -12,7 +12,10 @@ const Todolist = () => {
     setSelectFilter,
     filterTodos,
     onChangeDescription,
-    description
+    onChangeInputDate,
+    description,
+    inputDate,
+    handleUndoTodo,
   } = UseTodolistController()
   return (
     <div data-testid="todolist-container" className="todolist-container">
@@ -21,6 +24,10 @@ const Todolist = () => {
         <div className="todo-textarea-container m-2">
           <textarea className="form-control" value={description} onChange={onChangeDescription} placeholder="Leave a comment here" id="floatingTextarea"></textarea>
         </div>
+        <div>
+        <input type="date" value={inputDate} onChange={(evt) => onChangeInputDate(evt)}/>
+        </div>
+        <button className="btn btn-primary m-5" onClick={handleUndoTodo}>undo</button>
         <button className="btn btn-primary m-5" onClick={handleAddTodo}>add</button>
       </header>
       <div className="todolist-dropdown-container m-2" >
@@ -32,6 +39,7 @@ const Todolist = () => {
             <th scope="col" className="align-middle text-center">No.</th>
             <th scope="col">Todo Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Due Date</th>
             <th scope="col" className="text-center">Complete</th>
             <th scope="col" className="text-center">Action</th>
           </tr>
@@ -43,6 +51,7 @@ const Todolist = () => {
               <th scope="row" className="align-middle text-center">{index + 1}</th>
               <td className="align-middle text-wrap text-break">{todolist.todo}</td>
               <td className="align-middle text-wrap text-break">{todolist.description}</td>
+              <td className="align-middle text-wrap text-break">{todolist.date}</td>
               <td className="align-middle text-center">
                 <input type="checkbox" className="checkbox-complete align-middle" onChange={(v) => onChangeTodo(v.target.checked, todolist.id)} checked={todolist.complete} />
               </td>

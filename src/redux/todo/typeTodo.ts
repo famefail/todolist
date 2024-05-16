@@ -10,12 +10,8 @@ export type ActionTodo = {
     payload: {
         id: string,
         newTodo: string,
+        date: string
         description?: string,
         complete: boolean,
     }
   }
-
-
-
-  
-  
